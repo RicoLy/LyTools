@@ -1,0 +1,24 @@
+type (
+	OrderReq {
+		Id string `path:"id"`
+	}
+
+	OrderReply {
+		Id   string `json:"id" , validate:"required"`
+		Name string `json:"name", validate:"required"`
+	}
+
+	DownloadRequest {
+		File string `path:"file"`
+	}
+)
+service order {
+	@handler getOrder
+	get /api/order/get/:id (OrderReq) returns (OrderReply)
+	
+	@handler addOrder
+	post /api/order/add (OrderReq) returns (OrderReply)
+	
+	@handler DownloadHandler
+	get /static/:file(DownloadRequest)
+}
