@@ -73,6 +73,8 @@ func main() {
 	})
 	//获取policy
 	r.GET("/api/v1/get", func(c *gin.Context) {
+		ip := c.ClientIP()
+		fmt.Printf("ip:%s\n", ip)
 		fmt.Println("查看policy")
 		list := e.GetPolicy()
 		for _, vlist := range list {
