@@ -17,7 +17,7 @@ func TestParseMessage(t *testing.T) {
 		fmt.Printf("Comment: %+v\n", message.Comment)
 		fmt.Printf("Name: %+v\n", message.Name)
 		for _, info := range message.ElementInfos {
-			fmt.Printf("ElementInfos: %+v\n", info.Type)
+			fmt.Printf("ElementInfos: %+v\n", info.Name)
 		}
 		fmt.Println("================================")
 	}

@@ -10,24 +10,15 @@ import (
 
 func ParseMessage(fileInfo string) []*models.Message {
 	messages := make([]*models.Message, 0)
-	messageReg := regexp.MustCompile("\\/\\/\\s[\u4e00-\u9fa5\\w\\s|]*message\\s*(\\w*)\\s*{([\\s\\|\\*\\/@\\w:\",=;]*)}")
+	messageReg := regexp.MustCompile(constant.RegExpMessage)
 	results := messageReg.FindAllStringSubmatch(fileInfo, -1)
-	commentReg := regexp.MustCompile("\\/\\/\\s*([\u4e00-\u9fa5\\w\\s]*)message")
 	for _, result := range results {
-		if len(result) == 3 {
+		if len(result) == 4 {
 			message := new(models.Message)
 			message.Meta = result[0]
-			message.Name = result[1]
-			commentRes := commentReg.FindAllStringSubmatch(message.Meta, -1)
-			if len(commentRes) == 1 {
-				if len(commentRes[0]) == 2 {
-					message.Comment = strings.Trim(commentRes[0][1], "\n")
-				}
-			}
-			// fmt.Println("Comment: ", message.Comment)
-			message.ElementInfos = ParseElementInfo(result[2])
-			// fmt.Println("-----------------**********------------------", len(result))
-			// fmt.Println("Comment: ", message.Comment)
+			message.Comment = strings.Trim(result[1], " \n")
+			message.Name = result[2]
+			message.ElementInfos = ParseElementInfo(result[3])
 			messages = append(messages, message)
 		}
 	}
@@ -36,7 +27,7 @@ func ParseMessage(fileInfo string) []*models.Message {
 
 func ParseElementInfo(elementStr string) []*models.ElementInfo {
 	elementInfos := make([]*models.ElementInfo, 0)
-	elementReg := regexp.MustCompile("\\/\\/\\s*@\\w*\\:\\s*([\\s\\w@:\",|=*]*)\\n([\\s\\w]*)=\\s*\\d;")
+	elementReg := regexp.MustCompile(constant.RegExpElementInfo)
 	results := elementReg.FindAllStringSubmatch(elementStr, -1)
 	//typeNameReg := regexp.MustCompile("")
 	for _, result := range results {
