@@ -41,3 +41,9 @@ func getFileContent(fileName string) (content string) {
 	content = string(contentByte)
 	return
 }
+
+func TestParseService(t *testing.T) {
+	contentStr := getFileContent("../fiber_demo.proto")
+	_ = parser.ParseService(contentStr)
+	fmt.Println("============== End ==================")
+}

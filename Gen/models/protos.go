@@ -32,7 +32,7 @@ type Method struct {
 }
 
 // 服务信息  service\s*(\w*)\s*{[\s\w(){};]*}
-// \/\/\s[\u4e00-\u9fa5\w\@\:\s\/{()}]*}
+// \/\/\s*([\u4e00-\u9fa5\w\s@:"\/]*)service\s*(\w*)\s*{([\s/\u4e00-\u9fa5\w@:(){}|]*)}\s*}
 type Service struct {
 	Comment string   // 注释
 	Meta    string   // 元数据

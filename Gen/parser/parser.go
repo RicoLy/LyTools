@@ -51,3 +51,28 @@ func ParseElementInfo(elementStr string) []*models.ElementInfo {
 
 	return elementInfos
 }
+
+func ParseService(fileInfo string) []*models.Service {
+	services := make([]*models.Service, 0)
+	serviceReg := regexp.MustCompile(constant.RegExpService)
+	results := serviceReg.FindAllStringSubmatch(fileInfo, -1)
+	for _, result := range results {
+		service := new(models.Service)
+		service.Meta = result[0]
+
+		service.Comment = strings.Trim(FindTopStr(result[1], " @"), "/ ")
+		fmt.Println("results len", len(results))
+		fmt.Printf("Comment: %+v\n", service.Comment)
+	}
+
+	return services
+}
+
+func FindTopStr(str string, sep string) string {
+	index := strings.Index(str, sep)
+	if index == -1 {
+		return str
+	} else {
+		return str[:index]
+	}
+}
