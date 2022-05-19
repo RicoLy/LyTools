@@ -11,7 +11,7 @@ import (
 func TestParseMessage(t *testing.T) {
 	contentStr := getFileContent("../fiber_demo.proto")
 	//fmt.Println(contentStr)
-	messages := parser.ParseMessage(contentStr)
+	messages := parser.ParseMessages(contentStr)
 	for _, message := range messages {
 		fmt.Println("================================")
 		fmt.Printf("Comment: %+v\n", message.Comment)
@@ -44,6 +44,13 @@ func getFileContent(fileName string) (content string) {
 
 func TestParseService(t *testing.T) {
 	contentStr := getFileContent("../fiber_demo.proto")
-	_ = parser.ParseService(contentStr)
+	services := parser.ParseServices(contentStr)
+	fmt.Println("============== services ==================", len(services))
+	for _, service := range services {
+		fmt.Printf("service.Methods len: %#v\n", len(service.Methods))
+		for _, method := range service.Methods {
+			fmt.Printf("method.name %+v \n", method.Request)
+		}
+	}
 	fmt.Println("============== End ==================")
 }
