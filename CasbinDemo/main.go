@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// 要使用自己定义的数据库rbac_db,最后的true很重要.默认为false,使用缺省的数据库名casbin,不存在则创建
-	a, err := xormadapter.NewAdapter("mysql", "root:ly@tcp(127.0.0.1:3306)/test?charset=utf8", true)
+	a, err := xormadapter.NewAdapter("mysql", "root:root@tcp(127.0.0.1:3306)/test?charset=utf8", true)
 	if err != nil {
 		log.Printf("连接数据库错误: %v", err)
 		return
