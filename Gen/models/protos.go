@@ -31,6 +31,7 @@ type Method struct {
 	Name        string   // 方法名
 	Request     string   // 参数
 	Response    string   // 返回值
+	Group       string   // 分组名
 }
 
 // 服务信息  service\s*(\w*)\s*{[\s\w(){};]*}

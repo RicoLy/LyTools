@@ -6,7 +6,19 @@ const (
 	RegExpService     = "\\/\\/\\s*([\u4e00-\u9fa5\\w\\s@:\"\\/]*)service\\s*(\\w*)\\s*{([\\s/\u4e00-\u9fa5\\w@:(){}|]*)}\\s*}"
 	RegExpAnoInfo     = "@(\\w*):\\s*([/:|\\w]*)"
 	RegExpMethod      = "\\/\\/\\s*([\u4e00-\u9fa5\\w\\s@:|/]*)rpc\\s*(\\w*)\\s*\\((\\w*)\\)\\s*returns\\s*\\((\\w*)\\)\\s*{"
+)
 
+const (
+	TplPostWithReq     = 0
+	TplGetWithQueryReq = 1
+	TplGetWithPathReq  = 2
+	TplGetNoQueryReq   = 3
+	TplGetNoPathReq    = 2
+)
+
+const (
+	NullReqType = "CommReq"
+	NullRspType = "CommRsp"
 )
 
 var (

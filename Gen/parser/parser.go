@@ -74,7 +74,12 @@ func ParseServices(fileInfo string) []*models.Service {
 					}
 				}
 			}
-			service.Methods = ParseMethods(result[3])
+			methods := ParseMethods(result[3])
+			service.Methods = make([]*models.Method, 0)
+			for _, method := range methods {
+				method.Group = service.Group
+				service.Methods = append(service.Methods, method)
+			}
 			services = append(services, service)
 		}
 	}
