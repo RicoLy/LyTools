@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -49,8 +50,24 @@ func TestParseService(t *testing.T) {
 	for _, service := range services {
 		fmt.Printf("service.Methods len: %#v\n", len(service.Methods))
 		for _, method := range service.Methods {
-			fmt.Printf("method.name %+v \n", method.Request)
+			fmt.Printf("method.PathParams %+v \n", method.PathParams)
 		}
 	}
 	fmt.Println("============== End ==================")
+}
+
+func TestStrTool(t *testing.T) {
+	s := "/get/:id"
+	top := strings.Split(s, "/:")
+	path := ""
+	params := make([]string, 0)
+	for i, s2 := range top {
+		if i == 0 {
+			path = s2
+		} else {
+			params = append(params, s2)
+		}
+	}
+	fmt.Println("path", path)
+	fmt.Println("params", params)
 }

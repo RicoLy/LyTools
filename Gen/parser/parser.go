@@ -97,6 +97,22 @@ func ParseMethods(methodStr string) []*models.Method {
 				if extraResult[1] == "method" {
 					method.MethodType = extraResult[2]
 				}
+				if extraResult[1] == "path" {
+					if method.MethodType == "get" {
+						pathInfo := strings.Split(extraResult[2], "/:")
+						method.PathParams = make([]string, 0)
+						for i, s := range pathInfo {
+
+							if i == 0 {
+								method.Path = strings.TrimRight(s, "/")
+							} else {
+								method.PathParams = append(method.PathParams, s)
+							}
+						}
+					} else {
+						method.Path = extraResult[2]
+					}
+				}
 				if extraResult[1] == "middleware" {
 					method.MiddleWares = extraResult[2]
 				}

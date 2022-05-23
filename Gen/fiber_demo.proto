@@ -78,13 +78,13 @@ message DetailRsp {
 
 // 用户模块 @group: user @prefix: /user
 service UserService {
-  // 获取验证码 @method: get
+  // 获取验证码 @method: get @path: /captcha
   rpc Captcha(CommReq) returns (CaptchaRsp) {}
-  // 登录 @method: post
+  // 登录 @method: post @path: /login
   rpc Login(LoginReq) returns (LoginRsp) {}
-  // 添加用户 @method: post @middleware: Jwt|CasBin
+  // 添加用户 @method: post @middleware: Jwt|CasBin @path: /add
   rpc Add(AddUserReq) returns (CommRsp) {}
-  // 用户详情 @method: post @middleware: Jwt|CasBin
+  // 用户详情 @method: get @middleware: Jwt|CasBin @path: /detail/:id
   rpc Detail(DetailReq) returns (DetailRsp) {}
 }
 
@@ -128,6 +128,6 @@ message ListOrderRsp {
 
 // 订单模块 @group: order @prefix: /order
 service OrderService {
-  // 订单列表 @method: get @middleware: Jwt|CasBin
+  // 订单列表 @method: get @middleware: Jwt|CasBin @path: /list
   rpc List(ListOrderReq) returns (ListOrderRsp) {}
 }
