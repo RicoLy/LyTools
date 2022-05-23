@@ -93,6 +93,47 @@ var service2 = &Service{
 	Methods: methods2,
 }
 
+var elements = []*ElementInfo{
+	&ElementInfo{
+		Meta: "test",
+		Name: "Id",
+		Type: "string",
+		Tags: "json:\"id\" validate:\"required\"",
+	},
+	&ElementInfo{
+		Meta: "test",
+		Name: "Name",
+		Type: "string",
+		Tags: "json:\"name\" validate:\"required\"",
+	},
+	&ElementInfo{
+		Meta: "test",
+		Name: "Role",
+		Type: "int",
+		Tags: "json:\"role\" validate:\"required\"",
+	},
+}
+
+var messages = []*Message{
+	&Message{
+		Comment:      "AddReq添加请求",
+		Meta:         "添加请求",
+		Name:         "AddReq",
+		ElementInfos: elements,
+	},
+	&Message{
+		Comment:      "AddReq添加请求",
+		Meta:         "添加请求",
+		Name:         "AddReq",
+		ElementInfos: elements,
+	},
+	&Message{
+		Comment:      "AddReq添加请求",
+		Meta:         "添加请求",
+		Name:         "AddReq",
+		ElementInfos: elements,
+	},
+}
 
 
 func TestLogic(t *testing.T) {
@@ -137,6 +178,29 @@ func TestRoutes(t *testing.T) {
 	// 解析
 	content := bytes.NewBuffer([]byte{})
 	err = tpl.Execute(content, project)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(content)
+}
+
+
+func TestTypes(t *testing.T) {
+
+	contentStr := getFileContent("F:\\code\\goProject\\LyTools\\templateTest\\demo1\\types.tpl")
+	//params := []string{"id", "name"}
+
+	tpl, err := template.New("tpl").Funcs(map[string]interface{}{
+		"Title": func(s string) string {
+			return strings.Title(s)
+		},
+	}).Parse(contentStr)
+	if err != nil {
+		return
+	}
+	// 解析
+	content := bytes.NewBuffer([]byte{})
+	err = tpl.Execute(content, messages)
 	if err != nil {
 		panic(err)
 	}

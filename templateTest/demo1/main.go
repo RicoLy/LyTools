@@ -36,6 +36,20 @@ type Project struct {
 	Name     string
 }
 
+type ElementInfo struct {
+	Meta string // 元数据
+	Name string // 名称
+	Type string // golang 数据类型
+	Tags string // 标签信息 tag | value  json:"pid" form:"pid"
+}
+
+type Message struct {
+	Comment      string         // 注释
+	Meta         string         // 元数据
+	Name         string         // 消息名
+	ElementInfos []*ElementInfo // proto字段
+}
+
 func main() {
 	contentStr := getFileContent("F:\\code\\goProject\\LyTools\\templateTest\\demo1\\handler.tpl")
 	//params := []string{"id", "name"}
