@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// {{.Comment}}
+// {{.Name}}Handler {{.Comment}}
 func {{.Name}}Handler(c *fiber.Ctx) (err error) {
     {{if ne .Request "CommReq"}}
     req := new(types.{{.Request}})

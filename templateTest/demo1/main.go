@@ -23,7 +23,7 @@ type Method struct {
 }
 
 func main() {
-	contentStr := getFileContent("F:\\code\\goProject\\LyTools\\templateTest\\demo1\\add_handler.tpl")
+	contentStr := getFileContent("F:\\code\\goProject\\LyTools\\templateTest\\demo1\\handler.tpl")
 	//params := []string{"id", "name"}
 	method := &Method{
 		Comment:     "commentAdd",
@@ -33,7 +33,7 @@ func main() {
 		PathParams:  nil,
 		MiddleWares: "jwt",
 		Name:        "Add",
-		Request:     "AddReq",
+		Request:     "CommReq",
 		Response:    "AddRsp",
 		Group:       "user",
 	}
