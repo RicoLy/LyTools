@@ -27,7 +27,7 @@ type Method struct {
 	MethodType  string   // 方法类型
 	Path        string   // 路径
 	PathParams  []string // 路径参数
-	MiddleWares string   // 中间件
+	MiddleWares []string   // 中间件
 	Name        string   // 方法名
 	Request     string   // 参数
 	Response    string   // 返回值

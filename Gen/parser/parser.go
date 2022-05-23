@@ -119,7 +119,7 @@ func ParseMethods(methodStr string) []*models.Method {
 					}
 				}
 				if extraResult[1] == "middleware" {
-					method.MiddleWares = extraResult[2]
+					method.MiddleWares = strings.Split(extraResult[2], "|")
 				}
 			}
 			method.Name = result[2]

@@ -15,11 +15,25 @@ type Method struct {
 	MethodType  string   // 方法类型
 	Path        string   // 路径
 	PathParams  []string // 路径参数
-	MiddleWares string   // 中间件
+	MiddleWares []string   // 中间件
 	Name        string   // 方法名
 	Request     string   // 参数
 	Response    string   // 返回值
 	Group       string   // 分组名
+}
+
+type Service struct {
+	Comment string    // 注释
+	Meta    string    // 元数据
+	Name    string    // 服务名
+	Group   string    // 分组信息
+	Prefix  string    // 路由前缀
+	Methods []*Method // 方法
+}
+
+type Project struct {
+	Services []*Service
+	Name     string
 }
 
 func main() {
@@ -31,7 +45,7 @@ func main() {
 		MethodType:  "post",
 		Path:        "/ccddg",
 		PathParams:  nil,
-		MiddleWares: "jwt",
+		MiddleWares: []string{"jwt, casBin"},
 		Name:        "Add",
 		Request:     "CommReq",
 		Response:    "AddRsp",
